@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Number Guessing Game</title>
+
+	<style>
+		html {
+	font-family: sans-serif;
+	}
+	
+		body {
+	width: 50%;
+	max-width: 800px;
+	min-width: 480px;
+	margin: 0 auto;
+    background-color: rgb(207, 209, 221);
+	}
+	</style>
+</head>
+
+<body>
+<h1>Guess The Number</h1>
+
+<p>We have selected a random number between 1 - 10.
+See if you can guess it.</p>
+
+
+<fieldset>
+    <legend>Inputs</legend>
+    <label for="guess">Your Guess(0-10):</label>
+    <input type="text" id="guess" value="" />
+    <input type="button" onclick="yourGuess()" value="submit" id="submit" /><br />
+   
+    <input id="cheat" type="checkbox" value="cheat" onclick="showNumberToGuess()" />
+    <label for="cheat">Cheat</label>
+    <div id="cheatShow" style="display: none;"><br>
+        <label for="numberToGuess">Number to guess(1-10)</label>
+     <input id="numberToGuess" type="text" />
+     
+    </div>
+   </fieldset>
+   <fieldset>
+    <legend> Output </legend>
+    <textarea id="output" name="output" rows="5" style="width: 100%;"></textarea>
+    
+   </fieldset><br>
+   <label>Your Name:</label>
+   <input type="text" id="name" value="" />
+
+<script type = "text/javascript">
+
+
+
+function yourGuess() {
+    guess = document.getElementById("guess").value;
+    guesses = document.getElementById("output");
+    name = document.getElementById("name").value;
+
+    if (guess == numToGuess) {
+        guesses.value = guesses.value + "\r" + name+" has guessed correctly! ("+guess+")";
+    } else if (guess > numToGuess) {
+        guesses.value = guesses.value + "\r" + name+" is guessing too high!("+guess+")";
+    } else {
+        guesses.value = guesses.value + "\r" + name+" is guessing too low!("+guess+")";
+    }
+}
+
+function showNumberToGuess() {
+   
+    if (document.getElementById('cheat').checked) {
+        document.getElementById('numberToGuess').value = numToGuess;
+        document.getElementById('cheatShow').style.display = 'inline';
+    } else {
+        document.getElementById('numberToGuess').value = '';
+        document.getElementById('cheatShow').style.display = 'none';
+    }
+}
+
+var numToGuess = Math.floor(Math.random()*10+1);
+
+</script>
+</body>
+</html>					
